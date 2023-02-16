@@ -1,30 +1,27 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import { Button } from "react-bootstrap";
 
-function Pagesignin() {
+function PButton({
+  children,
+  action,
+  variant,
+  size,
+  loading,
+  disabled,
+  className,
+}) {
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+    <Button
+      className={className}
+      onClick={action}
+      variant={variant}
+      disabled={disabled}
+      size={size}
+    >
+      {/* Berfungsi untuk disabled button saat user submit agar tidak terjadi multiple request */}
+      {loading ? "Loading..." : children}
+    </Button>
   );
 }
 
-export default Pagesignin;
+export default PButton;
