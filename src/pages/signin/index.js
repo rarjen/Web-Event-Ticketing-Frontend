@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { Container, Card } from "react-bootstrap";
 import axios from "axios";
 import PAlert from "../../components/Alert";
@@ -7,6 +7,7 @@ import { config } from "../../configs";
 import FormSignin from "./form";
 
 function PageSignin() {
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   // States
@@ -38,9 +39,9 @@ function PageSignin() {
       );
 
       console.log(res.data.data.token);
-
+      localStorage.setItem("token", res.data.data.token);
       setIsLoading(false);
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       setIsLoading(false);
       setAlert({
@@ -51,6 +52,7 @@ function PageSignin() {
     }
   };
 
+  if (token) return <Navigate to="/" replace={true} />;
   return (
     <Container md={12} className="my-5">
       <div className="m-auto" style={{ width: "50%" }}>
