@@ -1,8 +1,9 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { Container, Nav, Navbar, Breadcrumb, Table } from "react-bootstrap";
+import { Container, Table } from "react-bootstrap";
 import PButton from "../../components/Button";
 import PBreadCrumb from "../../components/BreadCrumb";
+import PNavbar from "../../components/Navbar";
 
 export default function Dashboard() {
   const token = localStorage.getItem("token");
@@ -10,17 +11,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">Petik</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Categories</Nav.Link>
-            <Nav.Link href="#pricing">Talents</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-
+      <PNavbar />
       <Container className="mt-3">
         <PBreadCrumb />
         <PButton>Tambah</PButton>

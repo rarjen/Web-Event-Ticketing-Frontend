@@ -8,12 +8,14 @@ function PBreadCrumb({ textSecond, textThird, urlSecond }) {
     <Breadcrumb className="my-2">
       <Breadcrumb.Item onClick={() => navigate("/")}>Home</Breadcrumb.Item>
       {!textThird && <Breadcrumb.Item active>{textSecond}</Breadcrumb.Item>}
+
       {textThird && (
         <Breadcrumb.Item onClick={() => navigate(urlSecond)}>
           {textSecond}
         </Breadcrumb.Item>
       )}
-      {!textThird && <Breadcrumb.Item active>{textThird}</Breadcrumb.Item>}
+
+      {textThird && <Breadcrumb.Item active>{textThird}</Breadcrumb.Item>}
     </Breadcrumb>
   );
 }
