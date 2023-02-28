@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SigninPage from "./pages/signin";
 import DashboardPage from "./pages/dashboard";
 import CategoriesPage from "./pages/categories";
+import CategoriesPageCreate from "./pages/categories/create";
+import CategoriesPageEdit from "./pages/categories/edit";
 
 function App() {
   return (
@@ -10,6 +12,14 @@ function App() {
       <Routes>
         <Route path="/" element={<DashboardPage />}></Route>
         <Route path="/categories" element={<CategoriesPage />}></Route>
+        <Route
+          path="/categories/create"
+          element={<CategoriesPageCreate />}
+        ></Route>
+        <Route
+          path="/categories/edit/:id"
+          element={<CategoriesPageEdit />}
+        ></Route>
         <Route path="/signin" element={<SigninPage />}></Route>
       </Routes>
     </BrowserRouter>
