@@ -5,7 +5,7 @@ import PButton from "../../components/Button";
 import PBreadCrumb from "../../components/BreadCrumb";
 import PNavbar from "../../components/Navbar";
 
-export default function Dashboard() {
+export default function PageDashboard() {
   const token = localStorage.getItem("token");
   if (!token) return <Navigate to="/signin" replace={true} />;
 

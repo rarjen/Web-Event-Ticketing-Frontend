@@ -4,16 +4,41 @@ import { Container, Table } from "react-bootstrap";
 import PButton from "../../components/Button";
 import PBreadCrumb from "../../components/BreadCrumb";
 import PNavbar from "../../components/Navbar";
+import axios from "axios";
+import { config } from "../../configs";
 
 export default function PageCategories() {
   const token = localStorage.getItem("token");
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); //dibuat array untuk menyimpan data categories
+  const [counter, setCounter] = useState(0);
+  const [bilanganGanjil, setBilanganGanjil] = useState(false);
+
+  console.log("data");
   console.log(data);
 
   useEffect(() => {
     console.log("useEffect");
+    const getCategoriesAPI = async () => {
+      try {
+        const res = await axios.get(`${config.api_host_dev}/cms/categories`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(res.data);
+
+        setData(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCategoriesAPI();
   }, []);
+
+  useEffect(() => {
+    setBilanganGanjil(counter % 2 !== 0 ? true : false);
+  }, [counter]);
 
   if (!token) return <Navigate to="/signin" replace={true} />;
 
@@ -23,7 +48,12 @@ export default function PageCategories() {
       <PNavbar />
       <Container className="mt-3">
         <PBreadCrumb textSecond="Categories" />
-        <PButton>Tambah</PButton>
+        <h1>
+          {bilanganGanjil
+            ? `${counter} adalah bilangan ganjil`
+            : `${counter} adalah bilangan genap`}
+        </h1>
+        <PButton action={() => setCounter(counter + 1)}>Tambah</PButton>
         <Table striped bordered hover variant="dark" className="mt-3">
           <thead>
             <tr>
