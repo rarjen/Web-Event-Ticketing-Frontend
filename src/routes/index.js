@@ -4,6 +4,7 @@ import GuestOnlyRoute from "../components/GuestOnlyRoute";
 
 import Login from "../pages/signin";
 import { HomeRoute } from "./HomeRoute";
+import { CategoriesRoute } from "./CategoriesRoute";
 import PNavbar from "../components/Navbar";
 
 export function AppRoutes() {
@@ -28,6 +29,7 @@ export function AppRoutes() {
         }
       >
         <Route path="dashboard/*" element={<HomeRoute />} />
+        <Route path="categories/*" element={<CategoriesRoute />} />
         <Route path="/" element={<Navigate to="/dashboard" replace={true} />} />
       </Route>
     </Routes>
