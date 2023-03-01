@@ -10,17 +10,19 @@ export default function CategoriesForm({
   isLoading,
   edit,
 }) {
-  <Form>
-    <PTextInputWithLabel
-      placeholder={"Masukkan nama kategori"}
-      label={"Nama Kategori"}
-      name="name"
-      value={form.name}
-      type="text"
-      onChange={handleChange}
-    />
-    <PButton variant="primary" action={handleSubmit} loading={isLoading}>
-      {edit ? "Ubah" : "Simpan"}
-    </PButton>
-  </Form>;
+  return (
+    <Form>
+      <PTextInputWithLabel
+        placeholder={"Masukkan nama kategori"}
+        label={"Nama Kategori"}
+        name="name"
+        value={form.name}
+        type="text"
+        onChange={handleChange}
+      />
+      <PButton variant="primary" action={handleSubmit} loading={isLoading}>
+        {edit ? "Ubah" : "Simpan"}
+      </PButton>
+    </Form>
+  );
 }
