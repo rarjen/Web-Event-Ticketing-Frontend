@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Card } from "react-bootstrap";
 import PAlert from "../../components/Alert";
-import FormSignin from "./form";
+import PForm from "./form";
 import { postData } from "../../utils/fetch";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../redux/auth/actions";
@@ -20,7 +20,7 @@ function PageSignin() {
   const [alert, setAlert] = useState({
     status: false,
     message: "",
-    type: "danger",
+    type: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -28,26 +28,26 @@ function PageSignin() {
   // Functions
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setAlert({ status: false });
+    // setAlert({ status: false });
   };
 
   const handleSubmit = async () => {
-    try {
-      setIsLoading(true);
-      const res = await postData(`/cms/auth/signin`, form);
+    setIsLoading(true);
+    const res = await postData(`/cms/auth/signin`, form);
 
-      // Dispatch
+    // Dispatch
+    if (res?.data?.data) {
       const token = res.data.data.token;
       const role = res.data.data.role;
       dispatch(userLogin(token, role));
 
       setIsLoading(false);
       navigate("/");
-    } catch (error) {
+    } else {
       setIsLoading(false);
       setAlert({
         status: true,
-        message: error?.response?.data?.message ?? "Internal Server Error!",
+        message: res?.response?.data?.message ?? "Internal Server Error!",
         type: "danger",
       });
     }
@@ -61,7 +61,7 @@ function PageSignin() {
       </div>
       <Card style={{ width: "50%" }} className="m-auto mt-5 p-2">
         <Card.Title className="text-center">Form Sign In</Card.Title>
-        <FormSignin
+        <PForm
           form={form}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
