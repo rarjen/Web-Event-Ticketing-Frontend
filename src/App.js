@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SigninPage from "./pages/signin";
 import DashboardPage from "./pages/dashboard";
 import CategoriesPage from "./pages/categories";
-import CategoriesPageCreate from "./pages/categories/create";
+import PageCreateCategory from "./pages/categories/create";
 import CategoriesPageEdit from "./pages/categories/edit";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <Route path="/categories" element={<CategoriesPage />}></Route>
         <Route
           path="/categories/create"
-          element={<CategoriesPageCreate />}
+          element={<PageCreateCategory />}
         ></Route>
         <Route
           path="/categories/edit/:id"
