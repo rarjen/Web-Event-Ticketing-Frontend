@@ -3,7 +3,7 @@ import { Breadcrumb } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function PBreadCrumb({ textSecond, textThird, urlSecond }) {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   return (
     <Breadcrumb className="my-2">
       <Breadcrumb.Item onClick={() => navigate("/")}>Home</Breadcrumb.Item>
