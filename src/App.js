@@ -1,27 +1,16 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SigninPage from "./pages/signin";
-import DashboardPage from "./pages/dashboard";
-import CategoriesPage from "./pages/categories";
-import PageCreateCategory from "./pages/categories/create";
-import CategoriesPageEdit from "./pages/categories/edit";
+import React, { useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { listen } from "./redux/listener";
+import { AppRoutes } from "./routes";
 
 function App() {
+  useEffect(() => {
+    listen();
+  }, []);
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<DashboardPage />}></Route>
-        <Route path="/categories" element={<CategoriesPage />}></Route>
-        <Route
-          path="/categories/create"
-          element={<PageCreateCategory />}
-        ></Route>
-        <Route
-          path="/categories/edit/:id"
-          element={<CategoriesPageEdit />}
-        ></Route>
-        <Route path="/signin" element={<SigninPage />}></Route>
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
   );
 }
