@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Container, Card } from "react-bootstrap";
-import axios from "axios";
 import PAlert from "../../components/Alert";
-import { config } from "../../configs";
 import FormSignin from "./form";
+import { postData } from "../../utils/fetch";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../redux/auth/actions";
 
 function PageSignin() {
-  const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // States
@@ -33,12 +34,13 @@ function PageSignin() {
   const handleSubmit = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.post(
-        `${config.api_host_dev}/cms/auth/signin`,
-        form
-      );
+      const res = await postData(`/cms/auth/signin`, form);
 
-      localStorage.setItem("token", res.data.data.token);
+      // Dispatch
+      const token = res.data.data.token;
+      const role = res.data.data.role;
+      dispatch(userLogin(token, role));
+
       setIsLoading(false);
       navigate("/");
     } catch (error) {
@@ -51,7 +53,6 @@ function PageSignin() {
     }
   };
 
-  if (token) return <Navigate to="/" replace={true} />;
   return (
     <Container md={12} className="my-5">
       <div className="m-auto" style={{ width: "50%" }}>
