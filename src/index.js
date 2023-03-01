@@ -4,11 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      {/* Membungkus semua router/path ke dalam Provider, agar masing2 router dapat memakai masing" store global yang ada dalam redux */}
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
