@@ -24,7 +24,7 @@ export default function TableWithAction({
         <Tbody
           status={status}
           data={data}
-          display={display}
+          display={tbody}
           editUrl={editUrl}
           deleteAction={deleteAction}
           actionNotDisplay={actionNotDisplay}
