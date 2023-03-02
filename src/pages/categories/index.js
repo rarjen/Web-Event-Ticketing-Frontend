@@ -3,8 +3,8 @@ import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PBreadCrumb from "../../components/BreadCrumb";
 import PButton from "../../components/Button";
-// import Table from "../../components/TableWithAction";
-import { useDispatch } from "react-redux";
+import PTable from "../../components/TableWithAction";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchCategories } from "../../redux/categories/actions";
 // import PAlert from "../../components/Alert";
 // import Swal from "sweetalert2";
@@ -17,7 +17,7 @@ function Categories() {
   const dispatch = useDispatch();
 
   // const notif = useSelector((state) => state.notif);
-  // const categories = useSelector((state) => state.categories);
+  const categories = useSelector((state) => state.categories); // didapat dari redux
   const [access, setAccess] = useState({
     tambah: false,
     hapus: false,
@@ -72,7 +72,7 @@ function Categories() {
 
   return (
     <Container className="mt-3">
-      <PBreadCrumb textSecound={"Categories"} />
+      <PBreadCrumb textSecond={"Categories"} />
 
       {access.tambah && (
         <PButton
@@ -87,7 +87,7 @@ function Categories() {
         <PAlert type={notif.typeNotif} message={notif.message} />
       )} */}
 
-      {/* <Table
+      <PTable
         status={categories.status}
         thead={["Nama", "Aksi"]}
         data={categories.data}
@@ -95,7 +95,7 @@ function Categories() {
         editUrl={access.edit ? `/categories/edit` : null}
         deleteAction={access.hapus ? (id) => handleDelete(id) : null}
         withoutPagination
-      /> */}
+      />
     </Container>
   );
 }
