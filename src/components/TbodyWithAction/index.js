@@ -5,7 +5,7 @@ import { Image, Spinner } from "react-bootstrap";
 import moment from "moment";
 import { config } from "../../configs";
 
-function TbodyWithAction({
+export default function TbodyWithAction({
   data,
   display,
   editUrl,
