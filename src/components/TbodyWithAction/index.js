@@ -41,7 +41,7 @@ export default function TbodyWithAction({
                           roundedCircle
                           src={`${config.api_image}/${data[key]}`}
                         />
-                      ) : key === date ? (
+                      ) : key === "date" ? (
                         moment(data[key]).format("DD-MM-YYYY, h:mm:ss a")
                       ) : (
                         data[key]
@@ -54,7 +54,7 @@ export default function TbodyWithAction({
                   {customAction && customAction(data._id, data.statusEvent)}
                   {editUrl && (
                     <PButton
-                      variant={success}
+                      variant={"success"}
                       size={"sm"}
                       action={() => navigate(`${editUrl}/${data._id}`)}
                     >
