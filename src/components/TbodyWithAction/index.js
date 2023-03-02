@@ -51,7 +51,7 @@ export default function TbodyWithAction({
               )}
               {!actionNotDisplay && (
                 <td>
-                  {customAction && customAction(data._id, data.statusEbent)}
+                  {customAction && customAction(data._id, data.statusEvent)}
                   {editUrl && (
                     <PButton
                       variant={success}
