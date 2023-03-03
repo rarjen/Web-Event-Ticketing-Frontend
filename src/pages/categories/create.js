@@ -35,7 +35,7 @@ function CategoryCreate() {
         setNotif(
           true,
           "success",
-          `berhasil tambah kategori ${res.data.data.name}`
+          `Berhasil tambah kategori ${res.data.data.name}`
         )
       );
       navigate("/categories");
