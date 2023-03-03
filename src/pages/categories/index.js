@@ -86,9 +86,9 @@ function Categories() {
         </PButton>
       )}
 
-      {/* {notif.status && (
+      {notif.status && (
         <PAlert type={notif.typeNotif} message={notif.message} />
-      )} */}
+      )}
 
       <PTable
         status={categories.status}
