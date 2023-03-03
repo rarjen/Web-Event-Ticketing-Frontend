@@ -60,14 +60,15 @@ function PageSignin() {
         {alert.status && <PAlert type={alert.type} message={alert.message} />}
       </div>
       <Card style={{ width: "50%" }} className="m-auto mt-5 p-2">
-        <Card.Title className="text-center">Form Sign In</Card.Title>
-        <PForm
-          form={form}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          isLoading={isLoading}
-        />
-        <Card.Body></Card.Body>
+        <Card.Body>
+          <Card.Title className="text-center">Form Sign In</Card.Title>
+          <PForm
+            form={form}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            isLoading={isLoading}
+          />
+        </Card.Body>
       </Card>
     </Container>
   );
