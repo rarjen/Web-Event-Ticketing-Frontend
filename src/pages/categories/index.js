@@ -6,7 +6,7 @@ import PButton from "../../components/Button";
 import PTable from "../../components/TableWithAction";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCategories } from "../../redux/categories/actions";
-// import PAlert from "../../components/Alert";
+import PAlert from "../../components/Alert";
 // import Swal from "sweetalert2";
 // import { deleteData } from "../../utils/fetch";
 // import { setNotif } from "../../redux/notif/actions";
@@ -16,8 +16,10 @@ function Categories() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const notif = useSelector((state) => state.notif);
+  const notif = useSelector((state) => state.notif);
+  // console.log(notif);
   const categories = useSelector((state) => state.categories); // didapat dari redux
+
   const [access, setAccess] = useState({
     tambah: false,
     hapus: false,
@@ -37,6 +39,7 @@ function Categories() {
     setAccess(access);
   };
 
+  // Akan pertama kali dijalankan saat web di load
   useEffect(() => {
     checkAccess();
   }, []);
@@ -82,8 +85,8 @@ function Categories() {
           Tambah
         </PButton>
       )}
-      {/* 
-      {notif.status && (
+
+      {/* {notif.status && (
         <PAlert type={notif.typeNotif} message={notif.message} />
       )} */}
 
