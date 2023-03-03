@@ -8,7 +8,7 @@ import { getData } from "../../utils/fetch";
 import debounce from "debounce-promise"; // berfungsi memberikan delay selama 1 detik sebelum melakukan akses
 // tujuan: misal kita akan melakukan filter, jadi saat mengetik tdk langsung hit endpoint tapi menunggu 1 detik
 
-// import { clearNotif } from "../notif/actions";
+import { clearNotif } from "../notif/actions";
 
 let debouncedFetchCategories = debounce(getData, 1000);
 
@@ -38,9 +38,9 @@ export const fetchCategories = () => {
     dispatch(startFetchingCategories());
 
     try {
-      //   setTimeout(() => {
-      //     dispatch(clearNotif());
-      //   }, 3000);
+      setTimeout(() => {
+        dispatch(clearNotif());
+      }, 2000);
 
       let res = await debouncedFetchCategories("/cms/categories");
 
