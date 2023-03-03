@@ -8,4 +8,4 @@ useNavigation digunakana jika dia itu ation misal ada di onclick, Link tidak bis
 
 useLocaction bisa kita pake untuk mendapatkan search nya
 
-Live cycle React
+Lifecycle React
