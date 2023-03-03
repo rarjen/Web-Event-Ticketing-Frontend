@@ -6,11 +6,11 @@ import PForm from "./form";
 import { useNavigate, useParams } from "react-router-dom";
 import { getData, putData } from "../../utils/fetch";
 import { useDispatch } from "react-redux";
-// import { setNotif } from "../../redux/notif/actions";
+import { setNotif } from "../../redux/notif/actions";
 
 export default function PageEditCategory() {
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { categoryId } = useParams();
   const [form, setForm] = useState({ name: "" });
   const [alert, setAlert] = useState({
@@ -40,13 +40,13 @@ export default function PageEditCategory() {
       setIsLoading(true);
       const res = await putData(`/cms/categories/${categoryId}`, form);
       if (res?.data?.data) {
-        // dispatch(
-        //   setNotif(
-        //     true,
-        //     "success",
-        //     `berhasil ubah kategori ${res.data.data.name}`
-        //   )
-        // );
+        dispatch(
+          setNotif(
+            true,
+            "success",
+            `Berhasil ubah kategori ${res.data.data.name}`
+          )
+        );
         navigate("/categories");
         setIsLoading(false);
       }
