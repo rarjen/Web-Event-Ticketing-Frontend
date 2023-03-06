@@ -115,8 +115,8 @@ function TalentsCreate() {
   return (
     <Container>
       <PBreadCrumb
-        textSecound={"Talents"}
-        urlSecound={"/talents"}
+        textSecond={"Talents"}
+        urlSecond={"/talents"}
         textThird="Create"
       />
       {alert.status && <PAlert type={alert.type} message={alert.message} />}

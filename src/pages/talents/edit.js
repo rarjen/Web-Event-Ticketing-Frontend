@@ -129,8 +129,8 @@ function TalentsEdit() {
   return (
     <Container>
       <PBreadCrumb
-        textSecound={"Talents"}
-        urlSecound={"/talents"}
+        textSecond={"Talents"}
+        urlSecond={"/talents"}
         textThird="Edit"
       />
       {alert.status && <PAlert type={alert.type} message={alert.message} />}
