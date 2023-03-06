@@ -31,7 +31,7 @@ export function AppRoutes() {
       >
         <Route path="dashboard/*" element={<HomeRoute />} />
         <Route path="categories/*" element={<CategoriesRoute />} />
-        <Route path="talents/*" element={<CategoriesRoute />} />
+        <Route path="talents/*" element={<TalentsRoute />} />
         <Route path="/" element={<Navigate to="/dashboard" replace={true} />} />
       </Route>
     </Routes>
