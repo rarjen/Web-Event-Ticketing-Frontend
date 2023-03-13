@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import PBreadCrumb from "../../components/BreadCrumb";
-import PAlert from "../../components/Alert";
+import SBreadCrumb from "../../components/BreadCrumb";
+import SAlert from "../../components/Alert";
 import Form from "./form";
 import { postData } from "../../utils/fetch";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ function TalentsCreate() {
     name: "",
     role: "",
     file: "",
-    avatar: "",
+    image: "",
   });
 
   const [alert, setAlert] = useState({
@@ -68,7 +68,7 @@ function TalentsCreate() {
           ...alert,
           status: true,
           type: "danger",
-          message: "type image png | jpg | jpeg",
+          message: "Type image png | jpg | jpeg only!",
         });
         setForm({
           ...form,
@@ -96,7 +96,7 @@ function TalentsCreate() {
         setNotif(
           true,
           "success",
-          `berhasil tambah talents ${res.data.data.name}`
+          `Berhasil tambah talents ${res.data.data.name}`
         )
       );
       navigate("/talents");
@@ -107,19 +107,19 @@ function TalentsCreate() {
         ...alert,
         status: true,
         type: "danger",
-        message: res.response.data.msg,
+        message: res.response.data.message,
       });
     }
   };
 
   return (
     <Container>
-      <PBreadCrumb
+      <SBreadCrumb
         textSecond={"Talents"}
         urlSecond={"/talents"}
         textThird="Create"
       />
-      {alert.status && <PAlert type={alert.type} message={alert.message} />}
+      {alert.status && <SAlert type={alert.type} message={alert.message} />}
       <Form
         form={form}
         isLoading={isLoading}
