@@ -15,7 +15,7 @@ function TalentsCreate() {
     name: "",
     role: "",
     file: "",
-    image: "",
+    avatar: "",
   });
 
   const [alert, setAlert] = useState({
@@ -68,7 +68,7 @@ function TalentsCreate() {
           ...alert,
           status: true,
           type: "danger",
-          message: "Type image png | jpg | jpeg only!",
+          message: "type image png | jpg | jpeg",
         });
         setForm({
           ...form,
@@ -96,7 +96,7 @@ function TalentsCreate() {
         setNotif(
           true,
           "success",
-          `Berhasil tambah talents ${res.data.data.name}`
+          `berhasil tambah talents ${res.data.data.name}`
         )
       );
       navigate("/talents");
@@ -107,7 +107,7 @@ function TalentsCreate() {
         ...alert,
         status: true,
         type: "danger",
-        message: res.response.data.message,
+        message: res.response.data.msg,
       });
     }
   };
