@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import PBreadCrumb from "../../components/BreadCrumb";
-import PButton from "../../components/Button";
-import PTableWithAction from "../../components/TableWithAction";
-import PSearchInput from "../../components/SearchInput";
+import BreadCrumb from "../../components/BreadCrumb";
+import Button from "../../components/Button";
+import Table from "../../components/TableWithAction";
+import SearchInput from "../../components/SearchInput";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchTalents, setKeyword } from "../../redux/talents/actions";
-import PAlert from "../../components/Alert";
+import AlertMessage from "../../components/Alert";
 import Swal from "sweetalert2";
 import { deleteData } from "../../utils/fetch";
 import { setNotif } from "../../redux/notif/actions";
@@ -75,20 +75,20 @@ function TalentsPage() {
 
   return (
     <Container className="mt-3">
-      <PBreadCrumb textSecound={"Talents"} />
+      <BreadCrumb textSecond={"Talents"} />
       {access.tambah && (
         <div className="mb-3">
-          <PButton action={() => navigate("/talents/create")}>Tambah</PButton>
+          <Button action={() => navigate("/talents/create")}>Tambah</Button>
         </div>
       )}
-      <PSearchInput
+      <SearchInput
         query={talents.keyword}
         handleChange={(e) => dispatch(setKeyword(e.target.value))}
       />
       {notif.status && (
-        <PAlert type={notif.typeNotif} message={notif.message} />
+        <AlertMessage type={notif.typeNotif} message={notif.message} />
       )}
-      <PTableWithAction
+      <Table
         status={talents.status}
         thead={["Nama", "Role", "Avatar", "Aksi"]}
         data={talents.data}
