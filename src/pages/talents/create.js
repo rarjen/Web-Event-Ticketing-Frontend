@@ -96,7 +96,7 @@ function TalentsCreate() {
         setNotif(
           true,
           "success",
-          `berhasil tambah talents ${res.data.data.name}`
+          `Berhasil tambah talents ${res.data.data.name}`
         )
       );
       navigate("/talents");
