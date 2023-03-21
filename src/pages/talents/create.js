@@ -107,7 +107,7 @@ function TalentsCreate() {
         ...alert,
         status: true,
         type: "danger",
-        message: res.response.data.msg,
+        message: res.response.data.message,
       });
     }
   };
