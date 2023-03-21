@@ -59,12 +59,12 @@ function PaymentsPage() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const res = await deleteData(`/cms/payments/${id}`);
-
+        // textSecound;
         dispatch(
           setNotif(
             true,
             "success",
-            `Berhasil hapus kategori ${res.data.data.type}`
+            `Berhasil hapus payment ${res.data.data.type}`
           )
         );
 

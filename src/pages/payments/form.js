@@ -40,7 +40,7 @@ export default function SpeakersForm({
               src={`${config.api_image}/${form.avatar}`}
             />
 
-            <Figure.Caption>Preview image avatar</Figure.Caption>
+            <Figure.Caption>Perview image avatar</Figure.Caption>
           </Figure>
         </div>
       )}

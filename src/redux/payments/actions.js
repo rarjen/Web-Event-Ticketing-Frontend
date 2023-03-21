@@ -36,7 +36,7 @@ export const fetchPayments = () => {
     try {
       setTimeout(() => {
         dispatch(clearNotif());
-      }, 5000);
+      }, 3000);
 
       let res = await debouncedFetchPayments("/cms/payments");
 
