@@ -2,8 +2,6 @@ import { CLEAR_NOTIF, SET_NOTIF } from "./constants";
 
 let initialState = { status: false, typeNotif: "", message: null };
 
-console.log(initialState);
-
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_NOTIF:
