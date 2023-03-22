@@ -64,7 +64,7 @@ function TalentsPage() {
           setNotif(
             true,
             "success",
-            `berhasil hapus speaker ${res.data.data.name}`
+            `Berhasil hapus speaker ${res.data.data.name}`
           )
         );
 
