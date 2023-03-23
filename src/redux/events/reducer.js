@@ -51,6 +51,6 @@ export default function reducer(state = initialState, action) {
         talent: action.talent,
       };
     default:
-      state;
+      return state;
   }
 }
