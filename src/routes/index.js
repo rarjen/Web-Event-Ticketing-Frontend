@@ -6,7 +6,7 @@ import Login from "../pages/signin";
 import { HomeRoute } from "./HomeRoute";
 import { CategoriesRoute } from "./CategoriesRoute";
 import { TalentsRoute } from "./TalentsRoute";
-import { PaymentsRoute } from "./PaymentsRouter";
+import { PaymentsRoute } from "./PaymentsRoute";
 import PNavbar from "../components/Navbar";
 
 export function AppRoutes() {
