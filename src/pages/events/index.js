@@ -103,6 +103,13 @@ export default function EventPage() {
       <PBreacCrumb textSecond={"Events"} />
       <Row>
         <Col>
+          <PSearchInput
+            name="keyword"
+            query={events.keyword}
+            handleChange={(e) => dispatch(setKeyword(e.target.value))}
+          />
+        </Col>
+        <Col>
           <PSelectBox
             placeholder={"Masukan pencarian kategori"}
             name="category"
