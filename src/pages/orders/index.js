@@ -35,6 +35,7 @@ function OrderPage() {
       <BreadCrumb textSecond={"Orders"} />
       <Row>
         <Col
+          sm="4"
           className="cursor-pointer position-relative"
           onClick={() => setIsShowed(true)}
         >
@@ -49,8 +50,8 @@ function OrderPage() {
             ""
           )}
         </Col>
-        <Col></Col>
-        <Col></Col>
+        {/* <Col></Col>
+        <Col></Col> */}
       </Row>
 
       {notif.status && (
