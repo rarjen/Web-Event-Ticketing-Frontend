@@ -30,12 +30,12 @@ export default function TableWithAction({
           actionNotDisplay={actionNotDisplay}
           customAction={customAction}
         />
-        {!withoutPagination && data.length ? (
-          <Pagination page={pages} handlePageClick={handlePageClick} />
-        ) : (
-          ""
-        )}
       </Table>
+      {!withoutPagination && data.length ? (
+        <Pagination pages={pages} handlePageClick={handlePageClick} />
+      ) : (
+        ""
+      )}
     </>
   );
 }
