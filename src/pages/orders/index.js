@@ -5,7 +5,6 @@ import Table from "../../components/TableWithAction";
 import SearchInput from "../../components/SearchInput";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOrders, setPage, setDate } from "../../redux/orders/actions";
-import AlertMessage from "../../components/Alert";
 import { fetchListEvents } from "../../redux/lists/actions";
 import DateRange from "../../components/InputDate";
 import { formatDate } from "../../utils/formatDate";
@@ -13,7 +12,6 @@ import { formatDate } from "../../utils/formatDate";
 function OrderPage() {
   const dispatch = useDispatch();
 
-  const notif = useSelector((state) => state.notif);
   const orders = useSelector((state) => state.orders);
 
   let [isShowed, setIsShowed] = React.useState(false);
@@ -50,13 +48,8 @@ function OrderPage() {
             ""
           )}
         </Col>
-        {/* <Col></Col>
-        <Col></Col> */}
       </Row>
 
-      {notif.status && (
-        <AlertMessage type={notif.typeNotif} message={notif.message} />
-      )}
       <Table
         status={orders.status}
         thead={[
