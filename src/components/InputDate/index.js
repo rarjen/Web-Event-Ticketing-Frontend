@@ -4,15 +4,12 @@ import { DateRange } from "react-date-range";
 export default function IndexDate({ date, onChangeDate, setIsShowed }) {
   React.useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   });
 
   const refDate = React.useRef(null);
-  //useRef berfungsi agar tidak di control dari onChange, dia akan berjalan berdasarkan event yang di trigger
-
   const handleClickOutside = (event) => {
     if (refDate && !refDate.current.contains(event.target)) {
       setIsShowed(false);
@@ -24,7 +21,7 @@ export default function IndexDate({ date, onChangeDate, setIsShowed }) {
   };
 
   return (
-    <div className="position-absolute" style={{ zIndex: "1" }} ref={refDate}>
+    <div className="position-absolute" style={{ zIndex: 999 }} ref={refDate}>
       <DateRange
         editableDateInputs={true}
         onChange={onChangeDate}
