@@ -11,6 +11,7 @@ export default function IndexDate({ date, onChangeDate, setIsShowed }) {
   });
 
   const refDate = React.useRef(null);
+  //useRef berfungsi agar tidak di control dari onChange, dia akan berjalan berdasarkan event yang di trigger
 
   const handleClickOutside = (event) => {
     if (refDate && !refDate.current.contains(event.target)) {
