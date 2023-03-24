@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import BreadCrumb from "../../components/Breadcrumb";
+import BreadCrumb from "../../components/BreadCrumb";
 import Table from "../../components/TableWithAction";
 import SearchInput from "../../components/SearchInput";
 import { useSelector, useDispatch } from "react-redux";
