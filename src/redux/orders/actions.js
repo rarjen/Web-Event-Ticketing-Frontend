@@ -21,7 +21,7 @@ export const startFetchingOrders = () => {
 
 export const successFetchingOrders = ({ orders, pages }) => {
   return {
-    type: START_FETCHING_ORDERS,
+    type: SUCCESS_FETCHING_ORDERS,
     orders,
     pages,
   };
@@ -54,9 +54,7 @@ export const fetchOrders = () => {
       let res = await debouncedFetchOrders("/cms/orders", params);
 
       const _temp = [];
-      const orders = res.data.data.order;
-
-      orders.forEach((res) => {
+      res.data.data.order.forEach((res) => {
         _temp.push({
           name: `${res.personalDetail.firstName} ${res.personalDetail.lastName}`,
           email: res.personalDetail.email,
