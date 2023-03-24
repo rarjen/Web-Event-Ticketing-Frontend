@@ -26,7 +26,7 @@ const rootReducers = combineReducers({
   payments: paymentsReducer,
   events: eventsReducer,
   lists: listsReducer,
-  oders: ordersReducer,
+  orders: ordersReducer,
 });
 const store = createStore(
   rootReducers,
