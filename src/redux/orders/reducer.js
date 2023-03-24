@@ -37,7 +37,7 @@ export default function reducer(state = initialState, action) {
     case SUCCESS_FETCHING_ORDERS:
       return {
         ...state,
-        status: statuslist.process,
+        status: statuslist.success,
         data: action.orders,
         pages: action.pages,
       };
