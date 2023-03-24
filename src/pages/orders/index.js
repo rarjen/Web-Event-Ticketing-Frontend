@@ -32,7 +32,7 @@ function OrderPage() {
 
   return (
     <Container className="mt-3">
-      <BreadCrumb textSecond={"orders"} />
+      <BreadCrumb textSecond={"Orders"} />
       <Row>
         <Col
           className="cursor-pointer position-relative"
