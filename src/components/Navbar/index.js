@@ -67,7 +67,7 @@ function PNavbar() {
           {/* <NavLink
             role={role}
             roles={organizers.lihat}
-            action={() => navigate('/organizers')}
+            action={() => navigate("/organizers")}
           >
             Oranizer
           </NavLink> */}
@@ -90,7 +90,7 @@ function PNavbar() {
             roles={accessOrders.lihat}
             action={() => navigate("/orders")}
           >
-            Transactions
+            Orders
           </NavLink>
         </Nav>
         <Nav className="justify-content-end">
