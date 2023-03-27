@@ -100,8 +100,8 @@ export default function EventsForm({
       <Form.Label>Key Point</Form.Label>
       <Row>
         {form.keyPoint.map((key, index) => (
-          <Col sm={6}>
-            <InputGroup className="mb-3" key={index}>
+          <Col sm={6} key={index}>
+            <InputGroup className="mb-3">
               <FormControl
                 placeholder="Masukan keypoint"
                 value={key}
