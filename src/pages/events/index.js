@@ -51,7 +51,7 @@ export default function EventPage() {
   };
 
   useEffect(() => {
-    dispatch(checkAccess());
+    checkAccess();
   }, []);
 
   useEffect(() => {
