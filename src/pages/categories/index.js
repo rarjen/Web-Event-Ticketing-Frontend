@@ -17,7 +17,7 @@ function Categories() {
   const dispatch = useDispatch();
 
   const notif = useSelector((state) => state.notif);
-  // console.log(notif);
+
   const categories = useSelector((state) => state.categories); // didapat dari redux
 
   const [access, setAccess] = useState({
