@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PBreacCrumb from "../../components/BreadCrumb";
@@ -21,6 +21,7 @@ import {
   fetchListCategories,
   fetchListTalents,
 } from "../../redux/lists/actions";
+import { accessEvents } from "../../const/access";
 
 export default function EventPage() {
   const navigate = useNavigate();
@@ -29,6 +30,29 @@ export default function EventPage() {
   const notif = useSelector((state) => state.notif);
   const events = useSelector((state) => state.events);
   const lists = useSelector((state) => state.lists);
+
+  const [access, setAccess] = useState({
+    tambah: false,
+    hapus: false,
+    edit: false,
+  });
+
+  const checkAccess = () => {
+    let { role } = localStorage.getItem("auth")
+      ? JSON.parse(localStorage.getItem("auth"))
+      : {};
+    const access = { tambah: false, hapus: false, edit: false };
+    Object.keys(accessEvents).forEach(function (key, index) {
+      if (accessEvents[key].indexOf(role) >= 0) {
+        access[key] = true;
+      }
+    });
+    setAccess(access);
+  };
+
+  useEffect(() => {
+    dispatch(checkAccess());
+  }, []);
 
   useEffect(() => {
     dispatch(fetchEvents());
@@ -99,8 +123,14 @@ export default function EventPage() {
 
   return (
     <Container className="mt-3">
-      <PButton action={() => navigate("events/create")}>Tambah</PButton>
       <PBreacCrumb textSecond={"Events"} />
+
+      {access.tambah && (
+        <PButton className={"mb-3"} action={() => navigate("/events/create")}>
+          Tambah
+        </PButton>
+      )}
+
       <Row>
         <Col>
           <PSearchInput
@@ -155,8 +185,8 @@ export default function EventPage() {
           "categoryName",
           "talentName",
         ]}
-        editUrl={`/events/edit`}
-        deleteAction={(id) => handleDelete(id)}
+        editUrl={access.edit ? `/events/edit` : null}
+        deleteAction={access.hapus ? (id) => handleDelete(id) : null}
         customAction={(id, status = "") => {
           return (
             <PButton
