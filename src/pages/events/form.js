@@ -29,8 +29,8 @@ export default function EventsForm({
 }) {
   return (
     <Form className="mb-2">
-      <Row>
-        <Col>
+      <Row key={"titleTagline"}>
+        <Col key={"inputTitle"}>
           <TextInputWithLabel
             placeholder={"Masukan judul"}
             label={"Judul"}
@@ -40,7 +40,7 @@ export default function EventsForm({
             onChange={handleChange}
           />
         </Col>
-        <Col>
+        <Col key={"inputTagline"}>
           <TextInputWithLabel
             placeholder={"Masukan tagline"}
             label={"Tagline"}
@@ -51,8 +51,8 @@ export default function EventsForm({
           />
         </Col>
       </Row>
-      <Row>
-        <Col>
+      <Row key={"dateCategory"}>
+        <Col key={"inputDate"}>
           <TextInputWithLabel
             placeholder={"Masukan tanggal acara"}
             label={"Tanggal"}
@@ -62,7 +62,7 @@ export default function EventsForm({
             onChange={handleChange}
           />
         </Col>
-        <Col>
+        <Col key={"inputCategory"}>
           <SelectBox
             label={"Category"}
             placeholder={"Masukan kategori"}
@@ -74,8 +74,8 @@ export default function EventsForm({
           />
         </Col>
       </Row>
-      <Row>
-        <Col>
+      <Row key={"aboutVenue"}>
+        <Col key={"inputAbout"}>
           <TextInputWithLabel
             placeholder={"Masukan about"}
             label={"About"}
@@ -85,7 +85,7 @@ export default function EventsForm({
             onChange={handleChange}
           />
         </Col>
-        <Col>
+        <Col key={"inputVenue"}>
           <TextInputWithLabel
             placeholder={"Masukan tempat acara"}
             label={"Tempat acara"}
@@ -98,7 +98,7 @@ export default function EventsForm({
       </Row>
 
       <Form.Label>Key Point</Form.Label>
-      <Row>
+      <Row key={"keyPointRow"}>
         {form.keyPoint.map((key, index) => (
           <Col sm={6} key={index}>
             <InputGroup className="mb-3">
@@ -125,11 +125,11 @@ export default function EventsForm({
         Tambah keypoint
       </Button>
 
-      <Row>
-        <Col>
+      <Row key={"talentAvatar"}>
+        <Col key={"inputTalents"}>
           <SelectBox
-            label={"Speaker"}
-            placeholder={"Masukan pembica"}
+            label={"Talent"}
+            placeholder={"Masukan talent"}
             name="talent"
             value={form.talent}
             options={lists.talents}
@@ -137,12 +137,12 @@ export default function EventsForm({
             handleChange={(e) => handleChange(e)}
           />
         </Col>
-        <Col>
+        <Col key={"avatar"}>
           <TextInputWithLabel
             placeholder={"Masukan Avatar"}
             label={"Cover"}
             name="avatar"
-            // value={form.avatar}
+            value={form.avatar}
             type="file"
             onChange={handleChange}
           />
@@ -166,18 +166,18 @@ export default function EventsForm({
       <Form.Label>Tiket</Form.Label>
 
       {form.tickets.map((tic, index) => (
-        <Row>
-          <Col sm={6}>
+        <Row key={"typeHargaStock"}>
+          <Col sm={6} key={`type-${index}`}>
             <TextInputWithLabel
               placeholder={"Masukan tipe tiket"}
-              label={"type"}
+              label={"Type"}
               name="type"
               value={tic.type}
               type="text"
               onChange={(e) => handleChangeTicket(e, index)}
             />
           </Col>
-          <Col sm={6}>
+          <Col sm={6} key={`harga-${index}`}>
             <TextInputWithLabel
               placeholder={"Masukan Harga"}
               label={"Harga"}
@@ -187,7 +187,7 @@ export default function EventsForm({
               onChange={(e) => handleChangeTicket(e, index)}
             />
           </Col>
-          <Col sm={6}>
+          <Col sm={6} key={`stock-${index}`}>
             <TextInputWithLabel
               placeholder={"Masukan tipe tiket"}
               label={"Stock"}
@@ -197,7 +197,7 @@ export default function EventsForm({
               onChange={(e) => handleChangeTicket(e, index)}
             />
           </Col>
-          <Col sm={index !== 0 ? 5 : 6}>
+          <Col sm={index !== 0 ? 5 : 6} key={`status-${index}`}>
             <TextInputWithLabel
               placeholder={"Masukan status"}
               label={"Status"}
@@ -211,6 +211,7 @@ export default function EventsForm({
             <Col
               sm={1}
               className="d-flex justify-content-end align-items-center"
+              key={`closeButton-${index}`}
             >
               <CloseButton onClick={() => handleMinusTicket(index)} />
             </Col>
