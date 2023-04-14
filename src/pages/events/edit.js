@@ -47,7 +47,7 @@ function EventsCreate() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchOneCategories = async () => {
+  const fetchOneEvent = async () => {
     const res = await getData(`/cms/events/${eventId}`);
 
     setForm({
@@ -75,7 +75,7 @@ function EventsCreate() {
   };
 
   useEffect(() => {
-    fetchOneCategories();
+    fetchOneEvent();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -162,7 +162,7 @@ function EventsCreate() {
     const res = await putData(`/cms/events/${eventId}`, payload);
     if (res.data.data) {
       dispatch(
-        setNotif(true, "success", `berhasil ubah events ${res.data.data.title}`)
+        setNotif(true, "success", `Berhasil ubah events ${res.data.data.title}`)
       );
 
       navigate("/events");
@@ -239,9 +239,9 @@ function EventsCreate() {
   return (
     <Container>
       <BreadCrumb
-        textSecound={"Events"}
-        urlSecound={"/events"}
-        textThird="Create"
+        textSecond={"Events"}
+        urlSecond={"/events"}
+        textThird="Edit"
       />
       {alert.status && <Alert type={alert.type} message={alert.message} />}
       <Form
