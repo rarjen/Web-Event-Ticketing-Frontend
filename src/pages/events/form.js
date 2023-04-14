@@ -142,11 +142,11 @@ export default function EventsForm({
             placeholder={"Masukan Avatar"}
             label={"Cover"}
             name="avatar"
-            value={form.avatar}
+            value={form.avatar.value}
             type="file"
             onChange={handleChange}
           />
-          {form.avatar !== "" && (
+          {form.avatar != "" && (
             <div>
               <Figure>
                 <Figure.Image
@@ -156,7 +156,7 @@ export default function EventsForm({
                   src={`${config.api_image}/${form.avatar}`}
                 />
 
-                <Figure.Caption>Perview image cover</Figure.Caption>
+                <Figure.Caption>Preview image cover</Figure.Caption>
               </Figure>
             </div>
           )}
@@ -201,8 +201,8 @@ export default function EventsForm({
             <TextInputWithLabel
               placeholder={"Masukan status"}
               label={"Status"}
-              name="status"
-              value={tic.status}
+              name="statusTicketCategories"
+              value={tic.statusTicketCategories}
               type="text"
               onChange={(e) => handleChangeTicket(e, index)}
             />
