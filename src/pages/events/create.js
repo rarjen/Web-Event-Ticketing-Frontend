@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import BreadCrumb from "../../components/BreadCrumb";
-import Alert from "../../components/Alert";
+import SAlert from "../../components/Alert";
 import Form from "./form";
 import { postData } from "../../utils/fetch";
 import { useNavigate } from "react-router-dom";
@@ -29,7 +29,7 @@ function EventsCreate() {
     tickets: [
       {
         type: "",
-        status: "",
+        statusTicketCategories: "",
         stock: "",
         price: "",
       },
@@ -183,7 +183,7 @@ function EventsCreate() {
     let _temp = [...form.tickets];
     _temp.push({
       type: "",
-      status: "",
+      statusTicketCategories: "",
       stock: "",
       price: "",
     });
@@ -217,7 +217,7 @@ function EventsCreate() {
         urlSecond={"/events"}
         textThird="Create"
       />
-      {alert.status && <Alert type={alert.type} message={alert.message} />}
+      {alert.status && <SAlert type={alert.type} message={alert.message} />}
       <Form
         form={form}
         isLoading={isLoading}
