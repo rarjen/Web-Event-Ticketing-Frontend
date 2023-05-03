@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as locales from "react-date-range/dist/locale";
 import { DateRange } from "react-date-range";
 
 export default function IndexDate({ date, onChangeDate, setIsShowed }) {
@@ -23,6 +24,7 @@ export default function IndexDate({ date, onChangeDate, setIsShowed }) {
   return (
     <div className="position-absolute" style={{ zIndex: 999 }} ref={refDate}>
       <DateRange
+        locale={locales["id"]}
         editableDateInputs={true}
         onChange={onChangeDate}
         moveRangeOnFirstSelection={false}
