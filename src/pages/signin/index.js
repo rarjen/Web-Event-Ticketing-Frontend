@@ -38,8 +38,10 @@ function PageSignin() {
     // Dispatch
     if (res?.data?.data) {
       const token = res.data.data.token;
+      const refreshToken = res.data.data.refreshToken;
+      console.log(refreshToken);
       const role = res.data.data.role;
-      dispatch(userLogin(token, role));
+      dispatch(userLogin(token, refreshToken, role));
 
       setIsLoading(false);
       navigate("/");
