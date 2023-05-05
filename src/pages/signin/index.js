@@ -39,9 +39,9 @@ function PageSignin() {
     if (res?.data?.data) {
       const token = res.data.data.token;
       const refreshToken = res.data.data.refreshToken;
-      console.log(refreshToken);
+      const email = res.data.data.email;
       const role = res.data.data.role;
-      dispatch(userLogin(token, refreshToken, role));
+      dispatch(userLogin(token, refreshToken, role, email));
 
       setIsLoading(false);
       navigate("/");
