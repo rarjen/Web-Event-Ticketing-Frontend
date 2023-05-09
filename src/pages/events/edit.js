@@ -13,7 +13,7 @@ import {
 } from "../../redux/lists/actions";
 import moment from "moment";
 
-function EventsCreate() {
+function EventsEdit() {
   const navigate = useNavigate();
   const { eventId } = useParams();
   const dispatch = useDispatch();
@@ -160,7 +160,7 @@ function EventsCreate() {
     };
 
     const res = await putData(`/cms/events/${eventId}`, payload);
-    if (res.data.data) {
+    if (res?.data?.data) {
       dispatch(
         setNotif(true, "success", `Berhasil ubah events ${res.data.data.title}`)
       );
@@ -262,4 +262,4 @@ function EventsCreate() {
   );
 }
 
-export default EventsCreate;
+export default EventsEdit;
