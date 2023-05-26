@@ -1,40 +1,113 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-// import { useSelector, useDispatch } from "react-redux";
+import NavLink from "../NavAccess";
 import { useNavigate } from "react-router-dom";
-import NavLink from "../NavLink";
-// import { userLogout } from "";
+import {
+  accessCategories,
+  accessTalents,
+  accessEvents,
+  accessParticipants,
+  accessPayments,
+  accessOrders,
+  accessOrganizers,
+  accessAdmin,
+} from "../../const/access";
 
-export default function PNavbar() {
-  //   const dispatch = useDispatch();
+function PNavbar() {
   const navigate = useNavigate();
-  //   let user = useSelector((state) => state.auth);
+  const [role, setRole] = useState(null);
 
-  //   const handleLogout = () => {
-  //     dispatch(userLogout());
-  //     navigate("/logout");
-  //   };
+  useEffect(() => {
+    const fetchData = () => {
+      let { role } = localStorage.getItem("auth")
+        ? JSON.parse(localStorage.getItem("auth"))
+        : {};
+
+      setRole(role);
+    };
+    fetchData();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = "/signin";
+  };
 
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="#home">Dashboard</Navbar.Brand>
         <Nav className="me-auto">
-          <NavLink action={() => navigate("/")}>Home</NavLink>
-          <NavLink action={() => navigate("/categories")}>Categories</NavLink>
-          <NavLink action={() => navigate("/talents")}>Talents</NavLink>
-          <NavLink action={() => navigate("/events")}>Events</NavLink>
-          <NavLink action={() => navigate("/participant")}>Participant</NavLink>
-          <NavLink action={() => navigate("/transactions")}>
-            Transactions
+          <NavLink
+            role={role}
+            roles={accessCategories.lihat}
+            action={() => navigate("/")}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            role={role}
+            roles={accessCategories.lihat}
+            action={() => navigate("/categories")}
+          >
+            Categories
+          </NavLink>
+          <NavLink
+            role={role}
+            roles={accessTalents.lihat}
+            action={() => navigate("/talents")}
+          >
+            Talents
+          </NavLink>
+          <NavLink
+            role={role}
+            roles={accessPayments.lihat}
+            action={() => navigate("/payments")}
+          >
+            Payment
+          </NavLink>
+          <NavLink
+            role={role}
+            roles={accessOrganizers.lihat}
+            action={() => navigate("/organizers")}
+          >
+            Oranizers
+          </NavLink>
+          <NavLink
+            role={role}
+            roles={accessAdmin.lihat}
+            action={() => navigate("/admin")}
+          >
+            Admin
+          </NavLink>
+          <NavLink
+            role={role}
+            roles={accessEvents.lihat}
+            action={() => navigate("/events")}
+          >
+            Events
+          </NavLink>
+          <NavLink
+            role={role}
+            roles={accessParticipants.lihat}
+            action={() => navigate("/participant")}
+          >
+            Participant
+          </NavLink>
+          <NavLink
+            role={role}
+            roles={accessOrders.lihat}
+            action={() => navigate("/orders")}
+          >
+            Orders
           </NavLink>
         </Nav>
-        {/* <Nav>
-          {!user.token && (
-            <NavLink action={() => navigate("login")}>Login</NavLink>
-          )}
-        </Nav> */}
+        <Nav className="justify-content-end">
+          <Nav.Link onClick={() => handleLogout()}>Logout</Nav.Link>
+        </Nav>
       </Container>
     </Navbar>
   );
 }
+
+export default PNavbar;

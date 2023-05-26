@@ -1,78 +1,106 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { Container, Table, Spinner } from "react-bootstrap";
-import PButton from "../../components/Button";
+import { Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import PBreadCrumb from "../../components/BreadCrumb";
-import PNavbar from "../../components/Navbar";
-import axios from "axios";
-import { config } from "../../configs";
+import PButton from "../../components/Button";
+import PTableWithAction from "../../components/TableWithAction";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCategories } from "../../redux/categories/actions";
+import PAlert from "../../components/Alert";
+import Swal from "sweetalert2";
+import { deleteData } from "../../utils/fetch";
+import { setNotif } from "../../redux/notif/actions";
+import { accessCategories } from "../../const/access";
 
-export default function PageCategories() {
-  const token = localStorage.getItem("token");
+function Categories() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [data, setData] = useState([]); //dibuat array untuk menyimpan data categories
-  const [isLoading, setIsLoading] = useState(false);
+  const notif = useSelector((state) => state.notif);
 
-  useEffect(() => {
-    const getCategoriesAPI = async () => {
-      setIsLoading(true);
-      try {
-        const res = await axios.get(`${config.api_host_dev}/cms/categories`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  const categories = useSelector((state) => state.categories); // didapat dari redux
 
-        setIsLoading(false);
-        setData(res.data.data);
-      } catch (error) {
-        setIsLoading(false);
-        console.log(error);
+  const [access, setAccess] = useState({
+    tambah: false,
+    hapus: false,
+    edit: false,
+  });
+
+  const checkAccess = () => {
+    let { role } = localStorage.getItem("auth")
+      ? JSON.parse(localStorage.getItem("auth"))
+      : {};
+    const access = { tambah: false, hapus: false, edit: false };
+    Object.keys(accessCategories).forEach(function (key, index) {
+      if (accessCategories[key].indexOf(role) >= 0) {
+        access[key] = true;
       }
-    };
-    getCategoriesAPI();
+    });
+    setAccess(access);
+  };
+
+  // Akan pertama kali dijalankan saat web di load
+  useEffect(() => {
+    checkAccess();
   }, []);
 
-  if (!token) return <Navigate to="/signin" replace={true} />;
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Apa kamu yakin?",
+      text: "Anda tidak akan dapat mengembalikan ini!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Iya, Hapus",
+      cancelButtonText: "Batal",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await deleteData(`/cms/categories/${id}`);
+        dispatch(
+          setNotif(
+            true,
+            "success",
+            `Berhasil hapus kategori ${res.data.data.name}`
+          )
+        );
+        dispatch(fetchCategories());
+      }
+    });
+  };
 
   return (
-    <>
-      <PNavbar />
-      <Container className="mt-3">
-        <PBreadCrumb textSecond="Categories" />
+    <Container className="mt-3">
+      <PBreadCrumb textSecond={"Categories"} />
 
-        <PButton action={() => navigate("/categories/create")}>Tambah</PButton>
+      {access.tambah && (
+        <PButton
+          className={"mb-3"}
+          action={() => navigate("/categories/create")}
+        >
+          Tambah
+        </PButton>
+      )}
 
-        <Table striped bordered hover variant="dark" className="mt-3">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Name</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {isLoading ? (
-              <tr>
-                <td colSpan={3} style={{ textAlign: "center" }}>
-                  <div className="flex items-center justify-center">
-                    <Spinner animation="border" variant="light" />
-                  </div>
-                </td>
-              </tr>
-            ) : (
-              data.map((data, index) => (
-                <tr key={index}>
-                  <td>{(index += 1)}</td>
-                  <td>{data.name}</td>
-                  <td>@twitter</td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </Table>
-      </Container>
-    </>
+      {notif.status && (
+        <PAlert type={notif.typeNotif} message={notif.message} />
+      )}
+
+      <PTableWithAction
+        status={categories.status}
+        thead={["Nama", "Aksi"]}
+        data={categories.data}
+        tbody={["name"]}
+        editUrl={access.edit ? `/categories/edit` : null}
+        deleteAction={access.hapus ? (id) => handleDelete(id) : null}
+        withoutPagination
+      />
+    </Container>
   );
 }
+
+export default Categories;
